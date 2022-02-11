@@ -5,83 +5,76 @@ const initialState = {
   x: '2',
   y: '2',
   steps: 0,
-  email: '',
+  email: 'gumsanmarip@gmail.com',
 }
-const URL = 'http://localhost:9000/api/result';
 
 export default class AppClass extends React.Component {
   state = initialState;
 
-  activeSquare = { x: 2, y: 2}
+
+  //coordinates
   
-
-  componentDidMount(){
-    this.state.x.y;
-  }
-
-  //coordinates 
-  moveCoord = () => {
-    this.set
   
-    up.y--;
-    down.y++;
-    left.x--;
-    right.x++;
- 
+  //steps-
+  stepCounter = () => { 
+    this.setState({ steps: this.state.steps + 1 })
   }
 
-  //submit, email error, post URL
-  onSubmit = e => {
-    e.preventDefault();
-    const payloadToSend = { email: this.state.email}
-    axios.post(URL, payloadToSend)
-      .then(res => {
-        this.setState({ 
-          ...this.state, 
-          message: res.data.message })
-      })
-      .catch(err => {
-        const errorFromAPI = err.response.data.message
-        this.setState({ ...this.state, error: errorFromAPI })
-      })
-
+  //move
+  handleClick = ()=> {
+    
   }
 
-  onError = err => {
-    const errorFromAPI = err.response.data.message
-    this.setState({ ...this.state, error: errorFromAPI })
-  }
 
   //reset x, y, steps-
   handleReset = () => {
     this.setState({ ...initialState});
   }
-  //steps-
-  stepCounter = () => { 
-    this.setState({ steps: this.state.steps + 1 })
+
+
+  //submit, message, email error, post
+  onChange = e => { 
+    this.setState({ ...this.state, [e.target.id]: e.target.value})
   }
+
+  onSubmit = e => {
+    e.preventDefault();
+    const payload = {x: this.state.x, y: this.state.y, steps: this.state.steps, email: this.state.email};
+    axios.post('http://localhost:9000/api/result', payload)
+      .then(res => {
+        this.setState({ ...this.state, message: res.data.message})
+        this.handleReset();
+      })
+      .catch(err => {
+        const errorFromAPI = err.response.data.message
+        this.setState({ ...this.state, message: errorFromAPI });
+      })
+      console.log(email);
+  }
+  
+
 
   render() {
     const { className } = this.props
     return (
       <div id="wrapper" className={className}>
         <div className="info">
-          <h3 id="coordinates">Coordinates (2, 2)</h3>
+          <h3 id="coordinates">Coordinates (x,y)</h3>
           <h3 id="steps">You moved {this.state.steps} times</h3>
         </div>
         <div id="grid">
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square active">B</div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
+          <div className="square" id='1'></div>
+          <div className="square" id='2'></div>
+          <div className="square" id='3'></div>
+          <div className="square" id='4'></div>
+          <div className="square active" id='5'>B</div>
+          <div className="square" id='6'></div>
+          <div className="square" id='7'></div>
+          <div className="square" id='8'></div>
+          <div className="square" id='9'></div>
         </div>
         <div className="info">
-          <h3 id="message">{this.state.error}</h3>
+          <h3 id="message">{this.state.message}</h3>
         </div>
         <div id="keypad">
           <button id="left" value={this.state.x} onClick={this.stepCounter}>LEFT</button>
@@ -90,9 +83,9 @@ export default class AppClass extends React.Component {
           <button id="down" value={this.state.y} onClick={this.stepCounter}>DOWN</button>
           <button id="reset" onClick={this.handleReset}>reset</button>
         </div>
-        <form>
-          <input id="email" type="email" placeholder="type email" onSubmit={this.props.onSubmit} value={this.props.email}></input>
-          <input id="submit" type="submit" ></input>
+        <form onSubmit={this.onSubmit}>
+          <input id="email" type="email" placeholder="type email" onChange={this.onChange} value={this.state.email}></input>
+          <input id="submit" type="submit" onClick={this.handleReset} ></input>
         </form>
       </div>
     )

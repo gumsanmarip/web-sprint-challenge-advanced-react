@@ -11,16 +11,28 @@ const URL = 'http://localhost:9000/api/result';
 export default function AppFunctional(props) {
   // const [{x, y, steps, email}, setState] = useState(initialState);
 
-  const handleChanges = (e) => {
-    set
+  //form submit
+  
+
+  const [form, setForm] = useState('');
+
+  const handleChange = (e) => {
+    setForm(e.target.value)
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAdd(form);
+  }
+
   //position
   const posArray = [
     [0,0,0],
     [0,1,0],
     [0,0,0],
-  ]
-  posArray[1][1];
+  ];
+
+  console.log(posArray[1][1]);
 
   //coordinates
   
@@ -61,7 +73,7 @@ export default function AppFunctional(props) {
         <button id="reset" >reset</button>
       </div>
       <form>
-        <input id="email" type="email" placeholder="type email"></input>
+        <input id="email" type="email" placeholder="type email" value={form} onChange={handleChange}></input>
         <input id="submit" type="submit"></input>
       </form>
     </div>
