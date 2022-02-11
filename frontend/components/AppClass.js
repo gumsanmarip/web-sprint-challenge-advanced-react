@@ -5,14 +5,32 @@ const initialState = {
   x: '2',
   y: '2',
   steps: 0,
-  email: 'gumsanmarip@gmail.com',
+  email: '',
 }
+const posArray = [
+  [0,0,0],
+  [0,1,0],
+  [0,0,0],
+];
 
 export default class AppClass extends React.Component {
   state = initialState;
 
 
   //coordinates
+  updateCoord = () => {
+    this.setState({
+      ...this.state, 
+      
+    })
+    for(var i = 0; i < posArray.length; i++) {
+      var cube = cubes[i];
+      for(var j = 0; j < posArray.length; j++) {
+          display("cube[" + i + "][" + j + "] = " + cube[j]);
+      }
+    }
+
+  }
   
   
   //steps-
@@ -22,7 +40,6 @@ export default class AppClass extends React.Component {
 
   //move
   handleClick = ()=> {
-    
   }
 
 
@@ -30,7 +47,6 @@ export default class AppClass extends React.Component {
   handleReset = () => {
     this.setState({ ...initialState});
   }
-
 
   //submit, message, email error, post
   onChange = e => { 
@@ -49,7 +65,6 @@ export default class AppClass extends React.Component {
         const errorFromAPI = err.response.data.message
         this.setState({ ...this.state, message: errorFromAPI });
       })
-      console.log(email);
   }
   
 
@@ -59,7 +74,7 @@ export default class AppClass extends React.Component {
     return (
       <div id="wrapper" className={className}>
         <div className="info">
-          <h3 id="coordinates">Coordinates (x,y)</h3>
+          <h3 id="coordinates">Coordinates ({this.state.x},{this.state.y}) </h3>
           <h3 id="steps">You moved {this.state.steps} times</h3>
         </div>
         <div id="grid">
