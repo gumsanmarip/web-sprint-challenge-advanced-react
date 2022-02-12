@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import axios from 'axios';
 
 const initialState = {
   x: '2',
@@ -9,10 +10,10 @@ const initialState = {
 
 
 export default function AppFunctional(props) {
-  // const [{x, y, steps, email}, setState] = useState(initialState);
-
-  //form submit
-
+  const [x, setX]= useState('2');
+  const [y, setY]= useState('2');
+  const [steps, setSteps]= useState(0);
+  const [email, setEmail]= useState('');
 
   //position
   const posArray = [
@@ -21,36 +22,33 @@ export default function AppFunctional(props) {
     [0,0,0],
   ];
 
-  console.log(posArray[1][1]);
+  console.log(posArray[1],[1]);
 
   //steps
-  const [steps, setStep] = useState(0);
+  function stepCounter(){ 
+    setSteps(steps + 1 ) 
+  }
  
-
   //reset x,y,steps
-  // const handleReset = () => {
-  //   setState({ ...initialState})
-
-  // }
-
-  const[values, setValues] = useForm(initialState);
-
-  handleChanges = (e) => { 
-    setValues({ ...values, [e.target.id]: e.target.value})
+  function handleReset(){
+    
   };
 
-  const handleSubmit = (e) => {
+  //submit, message, email error, post
+
+  const handleSubmit = (e) =>{
     e.preventDefault();
-    const payload = {x: this.state.x, y: this.state.y, steps: this.state.steps, email: this.state.email};
+    const payload = {x, y, steps, email};
     axios.post('http://localhost:9000/api/result', payload)
       .then(res => {
-        this.setState({ ...this.state, message: res.data.message})
-        this.handleReset();
+        const message = res.data.message;
+        handleReset();
       })
       .catch(err => {
         const errorFromAPI = err.response.data.message
-        this.setState({ ...this.state, message: errorFromAPI });
+        const message = errorFromAPI;
       })
+      return message;
   }
 
 
@@ -72,17 +70,17 @@ export default function AppFunctional(props) {
         <div className="square"></div>
       </div>
       <div className="info">
-        <h3 id="message">{message}</h3>
+        <h3 id="message">{handleSubmit}</h3>
       </div>
       <div id="keypad">
         <button id="left" >LEFT</button>
-        <button id="up" onClick={() => setStep(steps + 1)}>UP</button>
-        <button id="right" onClick={() => setStep(steps + 1)}>RIGHT</button>
-        <button id="down" onClick={() => setStep(steps + 1)}>DOWN</button>
-        <button id="reset" >reset</button>
+        <button id="up" onClick={stepCounter}>UP</button>
+        <button id="right" onClick={stepCounter}>RIGHT</button>
+        <button id="down" onClick={stepCounter}>DOWN</button>
+        <button id="reset" onClick={handleReset}>reset</button>
       </div>
       <form onSubmit={handleSubmit}>
-        <input id="email" type="email" placeholder="type email" value={values.email} onChange={handleChanges}></input>
+        <input id="email" type="email" placeholder="type email" value={email} onChange={e => setEmail(e.target.value)}></input>
         <input id="submit" type="submit"></input>
       </form>
     </div>

@@ -16,12 +16,10 @@ const posArray = [
 export default class AppClass extends React.Component {
   state = initialState;
 
-
   //coordinates
   updateCoord = () => {
     this.setState({
       ...this.state, 
-      
     })
     for(var i = 0; i < posArray.length; i++) {
       var cube = cubes[i];
@@ -30,18 +28,26 @@ export default class AppClass extends React.Component {
       }
     }
 
+    
   }
-  
+
+  moveLeft = () => {
+    this.setState({ x: this.state.x -1})
+  }
+  moveRight = () => {
+    this.setState({ x: this.state.x +1})
+  }
+  moveUp = () => {
+    this.setState({ y: this.state.y +1})
+  }
+  moveDown = () => {
+    this.setState({ y: this.state.y -1})
+  }
   
   //steps-
   stepCounter = () => { 
     this.setState({ steps: this.state.steps + 1 })
   }
-
-  //move
-  handleClick = ()=> {
-  }
-
 
   //reset x, y, steps-
   handleReset = () => {
