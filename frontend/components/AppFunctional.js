@@ -8,7 +8,6 @@ const initialState = {
   email: '',
 };
 
-
 export default function AppFunctional(props) {
   const [x, setX]= useState('2');
   const [y, setY]= useState('2');
@@ -22,9 +21,21 @@ export default function AppFunctional(props) {
     [0,1,0],
     [0,0,0],
   ];
-
   console.log(posArray[1],[1]);
 
+  function moveLeft(){
+    setX(x - 1);
+  }
+  function moveRight(){
+    setX(x + 1);
+  }
+  function moveUp (){
+    setY(y + 1);
+  }
+  function moveDown (){
+    setY(y - 1);
+  }
+  
   //steps
   function stepCounter(){ 
     setSteps(steps + 1 ) 
@@ -40,7 +51,6 @@ export default function AppFunctional(props) {
   };
 
   //submit, message, email error, post
-
   const handleSubmit = (e) =>{
     e.preventDefault();
     const payload = {x, y, steps, email};
@@ -56,7 +66,6 @@ export default function AppFunctional(props) {
       })
       handleReset();
   }
-
 
   return (
     <div id="wrapper" className={props.className}>

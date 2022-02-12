@@ -25,7 +25,6 @@ for (let i = 0; i < posArray.length; i++){
 
 export default class AppClass extends React.Component {
   state = initialState;
-
   
   //coordinates
   updateCoord = () => {
@@ -33,7 +32,6 @@ export default class AppClass extends React.Component {
       ...this.state, 
       
     })
-
     
   }
 
