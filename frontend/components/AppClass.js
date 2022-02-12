@@ -43,7 +43,7 @@ export default class AppClass extends React.Component {
   moveDown = () => {
     this.setState({ y: this.state.y -1})
   }
-  
+
   //steps-
   stepCounter = () => { 
     this.setState({ steps: this.state.steps + 1 })
@@ -55,17 +55,17 @@ export default class AppClass extends React.Component {
   }
 
   //submit, message, email error, post
-  onChange = e => { 
-    this.setState({ ...this.state, [e.target.id]: e.target.value})
+  onChange = (e) => { 
+    const { value } = e.target;
+    this.setState({ ...this.state, email: value})
   }
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     const payload = {x: this.state.x, y: this.state.y, steps: this.state.steps, email: this.state.email};
     axios.post('http://localhost:9000/api/result', payload)
       .then(res => {
         this.setState({ ...this.state, message: res.data.message})
-        this.handleReset();
       })
       .catch(err => {
         const errorFromAPI = err.response.data.message
@@ -105,8 +105,8 @@ export default class AppClass extends React.Component {
           <button id="reset" onClick={this.handleReset}>reset</button>
         </div>
         <form onSubmit={this.onSubmit}>
-          <input id="email" type="email" placeholder="type email" onChange={this.onChange} value={this.state.email}></input>
-          <input id="submit" type="submit" onClick={this.handleReset} ></input>
+          <input onChange={this.onChange} value={this.state.email} id="email" type="email" placeholder="type email"></input>
+          <input id="submit" type="submit"></input>
         </form>
       </div>
     )
