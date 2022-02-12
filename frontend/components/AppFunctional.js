@@ -14,6 +14,7 @@ export default function AppFunctional(props) {
   const [y, setY]= useState('2');
   const [steps, setSteps]= useState(0);
   const [email, setEmail]= useState('');
+  const [message, setMessage] = useState('')
 
   //position
   const posArray = [
@@ -42,13 +43,15 @@ export default function AppFunctional(props) {
     axios.post('http://localhost:9000/api/result', payload)
       .then(res => {
         const message = res.data.message;
+        setMessage(message);
         handleReset();
       })
       .catch(err => {
         const errorFromAPI = err.response.data.message
         const message = errorFromAPI;
+        setMessage(message);
       })
-      return message;
+      console.log(setMessage.message);
   }
 
 
@@ -70,7 +73,7 @@ export default function AppFunctional(props) {
         <div className="square"></div>
       </div>
       <div className="info">
-        <h3 id="message">{handleSubmit}</h3>
+        <h3 id="message">{message}</h3>
       </div>
       <div id="keypad">
         <button id="left" >LEFT</button>
