@@ -32,7 +32,11 @@ export default function AppFunctional(props) {
  
   //reset x,y,steps
   function handleReset(){
-    
+    setX('2');
+    setY('2');
+    setSteps('0');
+    setEmail('');
+    setMessage('');
   };
 
   //submit, message, email error, post
@@ -44,14 +48,13 @@ export default function AppFunctional(props) {
       .then(res => {
         const message = res.data.message;
         setMessage(message);
-        handleReset();
       })
       .catch(err => {
         const errorFromAPI = err.response.data.message
         const message = errorFromAPI;
         setMessage(message);
       })
-      console.log(setMessage.message);
+      handleReset();
   }
 
 

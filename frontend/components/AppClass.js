@@ -12,21 +12,27 @@ const posArray = [
   [0,1,0],
   [0,0,0],
 ];
+console.log(posArray[1],[1])
+const boxes = [];
+
+for (let i = 0; i < posArray.length; i++){
+  boxes[i] = [];
+  for (let j= 0; j < posArray.length; j++){
+    boxes[i][j] = null;
+  }
+}
+//console.log(boxes);
 
 export default class AppClass extends React.Component {
   state = initialState;
 
+  
   //coordinates
   updateCoord = () => {
     this.setState({
       ...this.state, 
+      
     })
-    for(var i = 0; i < posArray.length; i++) {
-      var cube = cubes[i];
-      for(var j = 0; j < posArray.length; j++) {
-          display("cube[" + i + "][" + j + "] = " + cube[j]);
-      }
-    }
 
     
   }
@@ -71,9 +77,8 @@ export default class AppClass extends React.Component {
         const errorFromAPI = err.response.data.message
         this.setState({ ...this.state, message: errorFromAPI });
       })
+    this.handleReset();  
   }
-  
-
 
   render() {
     const { className } = this.props
