@@ -27,6 +27,7 @@ export default class AppClass extends React.Component {
       this.setState({ ...this.state, message: "You can't go left"})
     }
   }
+
   moveRight = () => {
     if (this.state.coord.x < 3){
       this.setState({ ...this.state, 
@@ -39,6 +40,7 @@ export default class AppClass extends React.Component {
       this.setState({ ...this.state, message: "You can't go right"})
     }
   }
+
   moveUp = () => {
     if (this.state.coord.y > 1){
       this.setState({ ...this.state, 
@@ -51,6 +53,7 @@ export default class AppClass extends React.Component {
       this.setState({ ...this.state, message: "You can't go "})
     }
   }
+
   moveDown = () => {
     if (this.state.coord.y < 3){
       this.setState({ ...this.state, 
@@ -97,19 +100,19 @@ export default class AppClass extends React.Component {
     return (
       <div id="wrapper" className={className}>
         <div className="info">
-          <h3 id="coordinates">{`Coordinates (${this.state.coord.x},${this.state.coord.y})`}) </h3>
+          <h3 id="coordinates">{`Coordinates (${this.state.coord.x},${this.state.coord.y})`}</h3>
           <h3 id="steps">You moved {this.state.steps} times</h3>
         </div>
         <div id="grid">
-          <div className={`${this.state.coord.x == 1 && this.state.coord.y == 1 ? "square active" : "square"}`} id='1'>{this.state.coord.x === 1 && this.state.coord.y === 1 ? "B" : ""}</div>
-          <div className={`${this.state.coord.x == 2 && this.state.coord.y == 1 ? "square active" : "square"}`} id='2'>{this.state.coord.x === 2 && this.state.coord.y === 1 ? "B" : ""}</div>
-          <div className={`${this.state.coord.x == 3 && this.state.coord.y == 1 ? "square active" : "square"}`} id='3'>{this.state.coord.x === 3 && this.state.coord.y === 1 ? "B" : ""}</div>
-          <div className={`${this.state.coord.x == 1 && this.state.coord.y == 2 ? "square active" : "square"}`} id='4'>{this.state.coord.x === 1 && this.state.coord.y === 2 ? "B" : ""}</div>
-          <div className={`${this.state.coord.x == 2 && this.state.coord.y == 2 ? "square active" : "square"}`} id='5'>{this.state.coord.x === 2 && this.state.coord.y === 2 ? "B" : ""}</div>
-          <div className={`${this.state.coord.x == 3 && this.state.coord.y == 2 ? "square active" : "square"}`} id='6'>{this.state.coord.x === 3 && this.state.coord.y === 2 ? "B" : ""}</div>
-          <div className={`${this.state.coord.x == 1 && this.state.coord.y == 3 ? "square active" : "square"}`} id='7'>{this.state.coord.x === 1 && this.state.coord.y === 3 ? "B" : ""}</div>
-          <div className={`${this.state.coord.x == 2 && this.state.coord.y == 3 ? "square active" : "square"}`} id='8'>{this.state.coord.x === 2 && this.state.coord.y === 3 ? "B" : ""}</div>
-          <div className={`${this.state.coord.x == 3 && this.state.coord.y == 3 ? "square active" : "square"}`} id='9'>{this.state.coord.x === 3 && this.state.coord.y === 3 ? "B" : ""}</div>
+          <div className={`${this.state.coord.x == 1 && this.state.coord.y == 1 ? "square active" : "square"}`} >{this.state.coord.x === 1 && this.state.coord.y === 1 ? "B" : ""}</div>
+          <div className={`${this.state.coord.x == 2 && this.state.coord.y == 1 ? "square active" : "square"}`} >{this.state.coord.x === 2 && this.state.coord.y === 1 ? "B" : ""}</div>
+          <div className={`${this.state.coord.x == 3 && this.state.coord.y == 1 ? "square active" : "square"}`} >{this.state.coord.x === 3 && this.state.coord.y === 1 ? "B" : ""}</div>
+          <div className={`${this.state.coord.x == 1 && this.state.coord.y == 2 ? "square active" : "square"}`} >{this.state.coord.x === 1 && this.state.coord.y === 2 ? "B" : ""}</div>
+          <div className={`${this.state.coord.x == 2 && this.state.coord.y == 2 ? "square active" : "square"}`} >{this.state.coord.x === 2 && this.state.coord.y === 2 ? "B" : ""}</div>
+          <div className={`${this.state.coord.x == 3 && this.state.coord.y == 2 ? "square active" : "square"}`} >{this.state.coord.x === 3 && this.state.coord.y === 2 ? "B" : ""}</div>
+          <div className={`${this.state.coord.x == 1 && this.state.coord.y == 3 ? "square active" : "square"}`} >{this.state.coord.x === 1 && this.state.coord.y === 3 ? "B" : ""}</div>
+          <div className={`${this.state.coord.x == 2 && this.state.coord.y == 3 ? "square active" : "square"}`} >{this.state.coord.x === 2 && this.state.coord.y === 3 ? "B" : ""}</div>
+          <div className={`${this.state.coord.x == 3 && this.state.coord.y == 3 ? "square active" : "square"}`} >{this.state.coord.x === 3 && this.state.coord.y === 3 ? "B" : ""}</div>
         </div>
         <div className="info">
           <h3 id="message">{this.state.message}</h3>
