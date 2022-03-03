@@ -104,7 +104,7 @@ export default class AppClass extends React.Component {
           <div className={`${this.state.coord.x == 1 && this.state.coord.y == 1 ? "square active" : "square"}`} id='1'>{this.state.coord.x === 1 && this.state.coord.y === 1 ? "B" : ""}</div>
           <div className={`${this.state.coord.x == 2 && this.state.coord.y == 1 ? "square active" : "square"}`} id='2'>{this.state.coord.x === 2 && this.state.coord.y === 1 ? "B" : ""}</div>
           <div className={`${this.state.coord.x == 3 && this.state.coord.y == 1 ? "square active" : "square"}`} id='3'>{this.state.coord.x === 3 && this.state.coord.y === 1 ? "B" : ""}</div>
-          <div className={`${this.state.coord.x == 1 && this.state.coord.y == 2 ? "square active" : "square"}`} id='4'>{this.state.coord.x === 1 && this.state.coord.y === 1 ? "B" : ""}</div>
+          <div className={`${this.state.coord.x == 1 && this.state.coord.y == 2 ? "square active" : "square"}`} id='4'>{this.state.coord.x === 1 && this.state.coord.y === 2 ? "B" : ""}</div>
           <div className={`${this.state.coord.x == 2 && this.state.coord.y == 2 ? "square active" : "square"}`} id='5'>{this.state.coord.x === 2 && this.state.coord.y === 2 ? "B" : ""}</div>
           <div className={`${this.state.coord.x == 3 && this.state.coord.y == 2 ? "square active" : "square"}`} id='6'>{this.state.coord.x === 3 && this.state.coord.y === 2 ? "B" : ""}</div>
           <div className={`${this.state.coord.x == 1 && this.state.coord.y == 3 ? "square active" : "square"}`} id='7'>{this.state.coord.x === 1 && this.state.coord.y === 3 ? "B" : ""}</div>
